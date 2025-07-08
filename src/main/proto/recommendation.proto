@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.etica.apirecomendaciones.proto";
+option java_outer_classname = "RecommendationProto";
+
+service Recommendation {
+  rpc SayHello(HelloRequest) returns (HelloReply) {}
+  rpc StreamHello(HelloRequest) returns (stream HelloReply) {}
+  rpc GetRecommendations(RecommendationRequest) returns (RecommendationResponse) {}
+}
+
+message RecommendationRequest {
+  double lat = 1;
+  double lon = 2;
+  string prompt = 3;
+}
+
+message RecommendationResponse {
+  repeated Place places = 1;
+}
+
+message Place {
+  int32 id = 1;
+  string nombre = 2;
+  double descuento = 3;
+}
+
+message HelloRequest {
+  string name = 1;
+}
+
+message HelloReply {
+  string message = 1;
+}
